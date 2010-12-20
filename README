@@ -1,1 +1,46 @@
 Multitouch table for SIGMusic@ACM@UIUC
+
+
+
+
+
+Organization of an 'Orb' (musical instrument ui)...
+Multiple concentric looping tracks, or 'Time Rings'.
+    Each track can have any of the following (simultaneously):
+        Instrument
+        Sample
+        Live stream
+        Effects
+        Merges
+        Removals
+    
+    Several operations can be done on a time ring:
+        Expand duration (by repeating over newly-created track length) [default 2x]
+        Simplify track (locate things that are duplicated and consolodate their time).
+        Remove a whole time ring
+        Merge a timering
+
+
+    SoundSink.java
+        Sample[] 
+
+    SoundSource.java
+        addOutput(SoundSink ss);
+        Sample[] getAudio(Timecode start, Timecode end)
+
+    Orb.java
+    TimeRing.java
+        void resize(Timecode newlength);
+        void simplify();
+        void add(Entity e, Timecode startPosition);
+        void remove(Entity e);
+    Entity.java
+        Instrument.java
+        Sample.java
+        LineIn.java
+        Effect.java
+        OrbOperation.java
+            Merge.java
+            Removal.java
+
+
